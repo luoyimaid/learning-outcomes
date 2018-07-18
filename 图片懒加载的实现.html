@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style media="screen">
+    li{
+      display: inline-block;
+    }
+    img{
+      width: 200px;
+      height: 200px;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+  </ul>
+  <img class="imgLazyLoad" data-src="img/images.jpg" />
+  <img class="imgLazyLoad" data-src="img/images.jpg" />
+  <img class="imgLazyLoad" data-src="img/images.jpg" />
+  <img class="imgLazyLoad" data-src="img/images.jpg" />
+  <img class="imgLazyLoad" data-src="img/images.jpg" />
+  <img class="imgLazyLoad" data-src="img/images.jpg" />
+  <img class="imgLazyLoad" data-src="img/images.jpg" />
+  <img class="imgLazyLoad" data-src="img/images.jpg" />
+  <img class="imgLazyLoad" data-src="img/images.jpg" />
+  <img class="imgLazyLoad" data-src="img/images.jpg" />
+  <img class="imgLazyLoad" data-src="img/images.jpg" />
+  <img class="imgLazyLoad" data-src="img/images.jpg" />
+  <img class="imgLazyLoad" data-src="img/images.jpg" />
+  <img class="imgLazyLoad" data-src="img/images.jpg" />
+  <img class="imgLazyLoad" data-src="img/images.jpg" />
+  <img class="imgLazyLoad" data-src="img/images.jpg" />
+  <img class="imgLazyLoad" data-src="img/images.jpg" />
+  <img class="imgLazyLoad" data-src="img/images.jpg" />
+  <img class="imgLazyLoad" data-src="img/images.jpg" />
+  <img class="imgLazyLoad" data-src="img/images.jpg" />
+  <img class="imgLazyLoad" data-src="img/images.jpg" />
+  <img class="imgLazyLoad" data-src="img/images.jpg" />
+  <img class="imgLazyLoad" data-src="img/images.jpg" />
+  <img class="imgLazyLoad" data-src="img/images.jpg" />
+  <img class="imgLazyLoad" data-src="img/images.jpg" />
+  <img class="imgLazyLoad" data-src="img/images.jpg" />
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+  </ul>
+  <script type="text/javascript">
+    (function(){  //立即执行函数
+      let imgList = ["img/images.jpg","img/images.jpg","img/images.jpg","img/images.jpg","img/images.jpg","img/images.jpg","img/images.jpg","img/images.jpg","img/images.jpg","img/images.jpg","img/images.jpg","img/images.jpg","img/images.jpg","img/images.jpg","img/images.jpg","img/images.jpg","img/images.jpg","img/images.jpg","img/images.jpg","img/images.jpg","img/images.jpg","img/images.jpg","img/images.jpg"];  //保存所有图片节点
+      let delay;  //保存settimeout生成的引用
+      let time = 250;  //控制节流函数延时执行的时间
+      let offset = 0;  //设置偏差值（图片距离可视区域多远则立即加载）
+      function _isShow(el){  //判断img是否出现在可视区窗口
+        let croods = el.getBoundingClientRect();
+        return (coords.left >= 0 && coords.left >= 0 && coords.top) <= (document.documentElement.clientHeight || window.innerHeight) + parseInt(offset);
+      }
+      function _loadImg(){  //执行图片加载
+        for(let i=0; len = imgList.length; i < len; i++){
+          if(_isShow(imgList[i])){
+            imgList[i].src = imgList[i].getAttribute("data-src");  //把data-src属性的值赋给src
+            imgList.splice(i,1);
+          }
+        }
+      }
+      function _delay(){    //函数节流
+        clearTimeout(delay);
+        delay = setTimeout(() => {
+          _loadImg();
+        },time);
+      }
+      function imgLoad(secletor){  //获取所有需要实现懒加载图片对象引用并设置window监听事件scroll
+        _selector = selector || ".imgLazyLoad";
+        let nodes = document.querySelectAll(selector);
+        imgList = Array.apply(null,nodes);
+        window.addEventListener('scroll',_delay,false);
+      }
+    })();
+  </script>
+</body>
+</html>

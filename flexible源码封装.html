@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>大家好鲜明的风格Keith相对较好贵吃米饭国际化康师傅你的复合弓你发个居然敢你打吧</div>
+    <script>
+        (function (win, lib) {
+            // document缓存
+            var doc = win.document;
+            // documentElement缓存，即根元素HTML的DOM
+            var docEl = doc.documentElement;
+            // viewport属性的meta标签
+            var metaEl = doc.querySelector('meta[name = "viewport"]');
+            // flexible属性的meta标签，不是官方的，是手淘自己定的
+            var flexibleEl = doc.querySelector('meta[name = "flexible"]');
+            // 设备像素比,主要是为了在不同设备下显示文字
+            var dpr = 0;
+            // 页面缩放比例，为了解决1px的线过于粗的问题
+            var scale = 0;
+            // 缓存定时器timer
+            var tid;
+            // flexible库的公用对象，一些公用的方法和属性都在定义的这个对象上
+            var flexible = lib.flexible || (lib.flexible = {});
+
+            // 读取当前meta标签
+            // 在有viewport的meta标签下，如果发现设置了缩放比例，获取initial-scale 设置的值
+            // 并根据获取到的缩放比例设置dpr的数值
+            if(metaEl) {
+                console.warn('将根据已有的meta标签缩放比例');
+                var match = metaEl.getAttribute('content').match(/initial\-scale=([\d\.]+)/);
+                if(match) {
+                    scale = parseFloat(match[1]);
+                    dpr = parseInt(1 / scale);
+                }
+            }
+            // 在有flexible的meta标签下，.....
+            // 以maximum-dpr 的dpr值为基准，toFixed 是为了小数点后取两位，第三位四舍五入
+            // flexible的 meta标签是为了能够让用户自己设置缩放比例，一般很少用到。
+            else if (flexibleEl) {
+                var content = flexibleEl.getAttribute('content');
+                if(content) {
+                    var initialDpr = content.match(/initial\-dpr=([\d\.]+)/);
+                    var maximumDpr = content.match(/maximum\-dpr=([\d\.]+)/);
+                    if (initialDpr) {
+                        dpr = parseFloat(initialDpr[1]);
+                        scale = parseFloat(1 / dpr).toFixed(2);
+                    }
+                    if(maximumDpr) {
+                        dpr = parseFloat(maximumDpr[1]);
+                        scale = parseFloat(1 / dpr).toFixed(2);
+                    }
+                }
+            }
+
+            // 计算dpr和scale的值
+            if (!dpr && !scale) {
+                var isAndriod = win.navigator.appVersion.match(/andriod/gi);
+                var isIphone = win.navigator.appVersion.match(/iphone/gi);
+              // 如果用户没有手动设置 viewport或 flexible的 meta标签，就需要根据 devicePixelRatio这个属性设置。
+              // 计算方法：水平逻辑像素数 / 水平物理像素数 = window.devicePixelRatio。
+                var devicePixelRatio = win.devicePixelRatio;    // 决定屏幕是几倍屏
+                if (isIphone) {
+                    if (devicePixelRatio >= 3 && (!dpr || dpr >= 3)) {
+                        dpr = 3;
+                    } else if (devicePixelRatio >= 2 && (!dpr || dpr >= 2)) {
+                        dpr = 2;
+                    } else {
+                        dpr = 1;
+                    }
+                } else {    // 不用处理各种奇葩的屏幕像素比和分辨率，但在很多 Android高清屏下页面图片会不清晰。
+                    dpr = 1;
+                }
+                scale = 1/dpr;
+            }
+
+            // 设置dpr和scale
+            docEl.setAttribute('data-dpr',dpr);
+            if(!metaEl) {   // 如果没有meta标签，创建
+                metaEl = document.createElement('meta');
+                metaEl.setAttribute('name','viewport');
+                metaEl.setAttribute('content','initial-scale='+scale+', maximum-scale='+scale+', minimum-scale='+scale+', user-scalable = no');
+                if (docEl.firstElementChild) {
+                    docEl.firstElementChild.appendChild(metaEl);
+                } else {
+                    var wrap = document.createElement('div');
+                    wrap.appendChild(metaEl);
+                    doc.write(wrap.innerHTML);
+                }
+            }
+
+            // 计算HTML的根元素的font-size
+            function refreshRem () {
+              // docEl.getBoundingClientRect().width 同 document.documentElement.clientWidth
+              // 但在屏幕旋转和尺寸变化时，前者获取数值更快，后者会稍微延时
+                var width = docEl.getBoundingClientRect().width;
+                if (width / dpr > 540) {    // 设备的理想宽度，超过540，严格意义上讲已经不属于移动设备
+                    width = 540 * dpr;
+                }
+                var rem = width / 10;
+                docEl.style.fontSize = rem + 'px';
+                flexible.rem = win.rem = rem;
+            }
+
+            // 设置计算数值到页面中
+            win.addEventListener('resize',function() {
+                clearTimeout(tid);
+                tid = setTimeout(refreshRem,300);
+            },false);
+            win.addEventListener('pageshow',function(e) {
+                if(e.persisted) {
+                    clearTimeout(tid);
+                    tid = setTimeout(refreshRem,300);
+                }
+            });
+            if (doc.readyState === 'complete') {
+                doc.body.style.fontSize = 12 * dpr + 'px';
+            } else {
+                doc.addEventListener('DOMContentLoaded',function (e) {
+                  doc.body.style.fontSize = 12 * dpr + 'px';
+                },false);
+            }
+            refreshRem();
+
+            // 导出属性与方法
+            flexible.dpr = win.dpr = dpr;
+            flexible.refreshRem = refreshRem;
+            flexible.rem2px = function(d) {
+                var val = parseFloat(d) * this.rem;
+                if(typeof d === 'string' && d.match(/rem$/)) {
+                    val += 'px';
+                }
+                return val;
+            }
+            flexible.px2rem = function(d) {
+                var val = parseFloat(d) / this.rem;
+                if (typeof d === 'string' && d.match(/px$/)) {
+                    val += 'rem';
+                }
+                return val;
+            }
+
+        })(window, window['lib'] || (window['lib'] = {}));
+    </script>
+</body>
+</html>
