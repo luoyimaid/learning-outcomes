@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            width: 1200px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        /* 实现一个弯尾箭头 */
+        .curved_tail_arrow {
+            position: relative;
+            width: 0;
+            height: 0;
+            border-right: 19px solid red;
+            border-top: 19px solid transparent;
+            transform: rotate(100deg);
+        }
+        .curved_tail_arrow:after {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            left: -19px;
+            top: -24px;
+            border: 0 solid transparent;
+            border-top: 8px solid red;
+            border-radius: 40px 0 0 0;
+            transform: rotate(45deg);
+        }
+
+        /*实现一个梯形*/
+        .trapezoid {
+            width: 100px;
+            height: 0;
+            border-bottom: 100px solid red;
+            border-right: 50px solid transparent;
+            border-left: 50px solid transparent;
+        }
+
+        /*实现一个六芒星*/
+        .star_six_point {
+            width: 0;
+            height: 0;
+            border-bottom: 100px solid red;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            position: relative;
+            margin: 0 0 50px;
+        }
+        .star_six_point:after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-top: 100px solid red;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            position: absolute;
+            left: -50px;
+            top: 30px;
+        }
+
+        /*实现一个五角星*/
+        .star_five_point {
+            width: 0;
+            height: 0;
+            position: relative;
+            margin: 70px 0;
+            color: red;
+            border-bottom: 70px solid red;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+            transform: rotate(35deg);
+        }
+        .star_five_point:before {
+            content: '';
+            width: 0;
+            height: 0;
+            position: absolute;
+            left: -65px;
+            top: -45px;
+            border-bottom: 80px solid red;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            transform: rotate(-35deg);
+        }
+        .star_five_point:after {
+            content: '';
+            width: 0;
+            height: 0;
+            position: absolute;
+            top: 3px;
+            left: -105px;
+            color: red;
+            border-bottom: 70px solid red;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+            transform: rotate(-70deg);
+        }
+
+        /*实现一个五边形*/
+        .pentagon {
+            margin: 50px 0 0;
+            width: 54px;
+            position: relative;
+            border-width: 50px 18px 0;
+            border-style: solid;
+            border-color: red transparent;
+        }
+        .pentagon:before {
+            content: '';
+            width: 0;
+            height: 0;
+            position: absolute;
+            top: -85px;
+            left: -18px;
+            border-width: 0 45px 35px;
+            border-style: solid;
+            border-color: transparent transparent red;
+        }
+
+        /*实现一个六边形*/
+        .hexagon {
+            width: 100px;
+            height: 55px;
+            background-color: red;
+            position: relative;
+            margin: 30px 0;
+        }
+        .hexagon:before {
+            content: '';
+            width: 0;
+            height: 0;
+            color: red;
+            border-bottom: 25px solid red;
+            border-right: 50px solid transparent;
+            border-left: 50px solid transparent;
+            position: absolute;
+            left: 0;
+            top: -25px;
+        }
+        .hexagon:after {
+            content: '';
+            width: 0;
+            height: 0;
+            color: red;
+            border-top: 25px solid red;
+            border-right: 50px solid transparent;
+            border-left: 50px solid transparent;
+            position: absolute;
+            left: 0;
+            bottom: -25px;
+        }
+
+        /*实现一个心形*/
+        .heart {
+            width: 100px;
+            height: 90px;
+            position: relative;
+        }
+        .heart:before,
+        .heart:after {
+            content: '';
+            width: 50px;
+            height: 80px;
+            position: absolute;
+            left: 50px;
+            top: 0;
+            background-color: red;
+            border-radius: 50px 50px 0 0;
+            transform-origin: 0 100%;
+            transform: rotate(-45deg);
+        }
+        .heart:after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+
+        /*实现一个flag*/
+        .flag {
+            width: 110px;
+            height: 56px;
+            position: relative;
+            background-color: red;
+        }
+        .flag:after {
+            content: '';
+            width: 0;
+            height: 0;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            border-bottom: 13px solid white;
+            border-left: 55px solid transparent;
+            border-right: 55px solid transparent;
+        }
+
+        /*实现一个月亮*/
+        .moon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            /*background-color: #eeeeee;*/
+            box-shadow: 15px 15px 0 0 red;
+        }
+
+        /*实现一个搜索图标*/
+        .search {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 12px solid red;
+            position: relative;
+        }
+        .search:after {
+            content: '';
+            width: 40px;
+            height: 10px;
+            background-color: red;
+            position: absolute;
+            left: 45px;
+            bottom: -5px;
+            border-width: 0;
+            display: inline-block;
+            transform: rotate(35deg);
+        }
+
+        /*实现一个吃豆人*/
+        .pac_man {
+            width: 0;
+            height: 0;
+            border: 60px solid red;
+            border-right: 60px solid transparent;
+            border-radius: 60px;
+        }
+
+        /*实现一个无穷大*/
+        .infinity {
+            width: 212px;
+            height: 100px;
+            position: relative;
+        }
+        .infinity:before,
+        .infinity:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            border: 20px solid red;
+            border-radius: 50% 50% 0 50%;
+            transform: rotate(-45deg);
+        }
+        .infinity:after {
+            left: auto;
+            right: 0;
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+<body>
+<div>
+    <p>1. 实现一个弯尾箭头</p>
+    <div class="curved_tail_arrow"></div>
+</div>
+
+<div>
+    <p>2. 实现一个梯形</p>
+    <div class="trapezoid"></div>
+</div>
+
+<div>
+    <p>3. 实现一个六芒星</p>
+    <div class="star_six_point"></div>
+</div>
+
+<div>
+    <p>4. 实现一个五角星</p>
+    <div class="star_five_point"></div>
+</div>
+
+<div>
+    <p>5. 实现一个五边形</p>
+    <div class="pentagon"></div>
+</div>
+
+<div>
+    <p>6. 实现一个六边形</p>
+    <div class="hexagon"></div>
+</div>
+
+<div>
+    <p>7. 实现一个心形</p>
+    <div class="heart"></div>
+</div>
+
+<div>
+    <p>8. 实现一个flag</p>
+    <div class="flag"></div>
+</div>
+
+<div>
+    <p>9. 实现一个月亮</p>
+    <div class="moon"></div>
+</div>
+
+<div>
+    <p>10. 实现一个搜索图标</p>
+    <div class="search"></div>
+</div>
+
+<div>
+    <p>11. 实现一个吃豆人</p>
+    <div class="pac_man"></div>
+</div>
+
+<div>
+    <p>12. 实现一个无穷大</p>
+    <div class="infinity"></div>
+</div>
+</body>
+</html>
