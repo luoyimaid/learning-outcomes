@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8dd105e4-5c96-4f75-959b-6e682559dee4" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CSS实现多种图案.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/字符串方法.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/字符串逆置.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -36,11 +36,29 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CSS实现多种图案.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CSS实现多种图案.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CSS实现多种图案.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="560">
+            <state relative-caret-position="215">
               <caret line="260" column="23" lean-forward="true" selection-start-line="260" selection-start-column="23" selection-end-line="260" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="字符串逆置.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/字符串逆置.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="682">
+              <caret line="78" column="9" lean-forward="true" selection-start-line="78" selection-start-column="9" selection-end-line="78" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="字符串方法.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/字符串方法.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="589">
+              <caret line="38" column="9" lean-forward="true" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -83,6 +101,8 @@
         <option value="$PROJECT_DIR$/DOM遍历.html" />
         <option value="$PROJECT_DIR$/flexible源码封装.html" />
         <option value="$PROJECT_DIR$/CSS实现多种图案.html" />
+        <option value="$PROJECT_DIR$/字符串方法.html" />
+        <option value="$PROJECT_DIR$/字符串逆置.html" />
       </list>
     </option>
   </component>
@@ -169,12 +189,12 @@
       <workItem from="1527393691036" duration="13356000" />
       <workItem from="1530702203321" duration="525000" />
       <workItem from="1530703988286" duration="1121000" />
-      <workItem from="1531812823326" duration="17027000" />
+      <workItem from="1531812823326" duration="23484000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33589000" />
+    <option name="totallyTimeSpent" value="40046000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
@@ -207,7 +227,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -565,8 +585,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CSS实现多种图案.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
+        <state relative-caret-position="215">
           <caret line="260" column="23" lean-forward="true" selection-start-line="260" selection-start-column="23" selection-end-line="260" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/字符串方法.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="589">
+          <caret line="38" column="9" lean-forward="true" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/字符串逆置.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="682">
+          <caret line="78" column="9" lean-forward="true" selection-start-line="78" selection-start-column="9" selection-end-line="78" selection-end-column="9" />
         </state>
       </provider>
     </entry>

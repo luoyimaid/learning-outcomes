@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let str = 'abcdefg';
+
+    // 方法一：字符串拆分，逆置，拼接
+    let result1 = str.split('').reverse().join('');
+    console.log(result1);
+
+    // 方法二：遍历字符串，输出str.charAt(i)，一行只输出一个
+    for(let i = str.length - 1; i >= 0; i--) {
+      console.log(str.charAt(i));
+    }
+
+//    方法三：调用一个单独的函数实现
+    function reverse(str) {
+      let len = str.length;
+      let result2 = '';
+      if (len === 0) {
+        return null;
+      }
+      while(--len >= 0) {
+        result2 += str.charAt(len);
+      }
+      return result2;
+    }
+    console.log(reverse(str));
+
+//    方法四：利用call(),调用一个对象的一个方法，以另一个对象替换当前对象
+    let result3 = Array.prototype.slice.call(str).reverse().join('');
+    console.log(result3);
+
+//    方法五：利用排序方法实现
+    function Sort(a,b) {
+      return b.localeCompare(a);
+    }
+    let result4 = str.split('').sort(Sort).join('');
+    console.log(result4);
+
+//    方法六：利用堆栈实现，先实现一个栈，然后利用这个栈逆置输出
+    function stack() {
+      this.data = [];   // 保存栈内元素
+      this.top = 0;     // 记录栈顶位置
+    }
+    stack.prototype = {
+      push: function push(element) {     // 入栈
+        this.data[this.top++] = element;
+      },
+      pop: function pop() {     // 出栈
+        return this.data[--this.top];
+      },
+      peek: function peek() {    // 查找栈顶元素
+        return this.data[this.top - 1];
+      },
+      clear: function clear() {   // 清空栈内元素
+        this.top = 0;
+      },
+      length: function length() {  // 返回栈内元素个数
+        return this.top;
+      }
+    }
+    // function reverse(str) {      //利用这个栈实现字符串逆置输出
+    //   let s = new stack();      //创建一个栈的实例
+    //   let arr = str.split(''); //将字符串转成数组
+    //   let len = arr.length;
+    //   for(let i=0; i<len; i++){ //将元素压入栈内
+    //     s.push(arr[i]);
+    //   }
+    //   for(let i=0; i<len; i++){  //输出栈内元素
+    //     console.log(s.pop());
+    //   }
+    // }
+    // console.log(reverse(str));
+</script>
+</body>
+</html>
