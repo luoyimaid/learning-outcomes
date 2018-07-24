@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        var foo = 1;
+        var bar = 2;
+        function fn1() {
+          var v1 = 3;
+          var v2 = 4;
+          var foo = 5;
+          console.log('inside');
+        }
+        console.log('outside');
+        fn1();
+
+        function a() {  // 函数a的创建时阶段
+          var i = 0;
+          function b() {
+            console.log(i++);
+          }
+          return b;
+        }
+        // 因为a()是在全局范围被调用，所以说是全局对象(window)创建了a()的运行时阶段
+        var funcA = a();    // 函数a的运行时阶段
+        funcA();    // 0
+        funcA();    // 1
+        funcA();    // 2
+        // i没有被销毁，因为i一直在被引用
+    </script>
+</body>
+</html>
