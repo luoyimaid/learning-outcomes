@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 插入排序
+        // 默认第一个元素已经排序，然后从第二个元素开始取元素
+        // 在已经排序的序列中从后向前查找，如果已经排序的这个元素大于新元素，那已排序的序列从该元素开始就都向后移动一位
+        // 然后重复这个过程，直到找到一个比取出的元素小的元素
+        // 然后把取出来的元素插入该元素之后，重复上述过程
+        // 时间复杂度：最好情况：O(n),最坏情况：o(n2)，稳定性：稳定
+        let arr = [3,2,5,8,4,7,6,9];
+        function insertSort(arr) {
+            for(let i=1; i < arr.length; i++) {
+                let j = i-1;
+                let key = arr[i];
+                while(j >= 0 && arr[j] > key) {
+                    arr[j+1] = arr[j];
+                    j--;
+                }
+                arr[j+1] = key;
+            }
+            return arr;
+        }    
+        console.log(insertSort(arr));
+    </script>
+</body>
+</html>

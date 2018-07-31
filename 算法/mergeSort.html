@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 归并排序：
+        // 递归的把长度为N的序列分为两个长度为N/2的子序列，直到子序列长度为1
+        // 分别对其进行归并排序
+        // 合成一个完整的序列
+        let arr =[3,2,5,8,4,7,6,9];
+        
+        function mergeSort(arr) {
+            if(arr.length < 2) {
+                return arr;
+            }
+            let middle = Math.floor(arr.length/2);
+            let left = arr.slice(0,middle);
+            let right = arr.slice(middle);
+            return merge(mergeSort(left),mergeSort(right));
+        }
+
+        function merge(left,right) {
+            let result = [];
+            while(left.length && right.length) {
+                if(right[0] < left[0]) {
+                    result.push(right.shift());
+                } else {
+                    result.push(left.shift());
+                }
+            }
+
+            while(left.length) {
+                result.push(left.shift());
+            }
+
+            while(right.length) {
+                result.push(right.shift());
+            }
+            return result;
+        }
+
+        console.log(mergeSort(arr));
+    </script>
+</body>
+</html>

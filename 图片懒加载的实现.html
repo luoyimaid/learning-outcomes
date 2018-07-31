@@ -68,7 +68,7 @@
         return (coords.left >= 0 && coords.left >= 0 && coords.top) <= (document.documentElement.clientHeight || window.innerHeight) + parseInt(offset);
       }
       function _loadImg(){  //执行图片加载
-        for(let i=0; len = imgList.length; i < len; i++){
+        for(let i=0, len = imgList.length; i < len; i++){
           if(_isShow(imgList[i])){
             imgList[i].src = imgList[i].getAttribute("data-src");  //把data-src属性的值赋给src
             imgList.splice(i,1);
