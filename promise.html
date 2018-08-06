@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //  promise 构造函数的实现
+        function Promise(fn) {
+            // promise 的状态变量
+            // 0 --- pending
+            // 1 --- resolved
+            // 2 --- rejected
+            this._state = 0;
+            // promise 执行结果
+            this._value = null;
+            // then方法注册回调处理数组
+            // then方法可以被调用多次，所以调用一个数组存放处理对象
+            this._deferred = [];
+
+            // 立即执行fn函数
+            try {
+                fn(value => {
+                    resolve(this,value);
+                }, reson => {
+                    reject(this,value);
+                })
+            } catch (err) {
+                // 处理执行fn异常
+                reject(this,err);
+            }
+        } 
+        let a = {
+            b : () => {
+                console.log(this);
+            }
+        }
+        a.b();  // window
+    </script>
+</body>
+</html>
