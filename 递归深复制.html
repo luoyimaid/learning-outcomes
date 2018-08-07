@@ -7,6 +7,33 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <script>
+        let obj = {
+            a: {
+                b: 1,
+                c: {
+                    d: 2
+                }
+            }
+        }  
+        function deepCopy(obj) {
+            let newObj = {};
+            if(typeof obj === 'object' && obj instanceof Array) {
+                newObj = [];
+            }
+            for(let key in obj) {
+                if(typeof obj[key] === 'object') {
+                    newObj[key] = deepCopy(obj[key]);
+                } else {
+                    newObj[key] = obj[key];
+                }
+            }
+            return newObj;
+        }  
+        let newObj = deepCopy(obj);
+        newObj.a.c.d = 3;
+        console.log(obj);
+        console.log(newObj);
+    </script>
 </body>
 </html>
